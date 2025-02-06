@@ -1,0 +1,189 @@
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="https://i.ibb.co/L59DTpm/Pink-and-Black-Modern-Initials-Logo-Design-1-removebg-preview.png" type="image/x-icon">
+    <link href="../css/output.css" rel="stylesheet">
+    <style>
+        /* Mobile Menu Styling */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #2d3748; /* Dark background for mobile menu */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            color: white; /* White text */
+        }
+
+        .mobile-menu a:hover {
+            background-color: #4a5568; /* Darker hover effect */
+            color: #63b3ed; /* Light blue hover text */
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        /* Profile Dropdown Styling */
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2d3748; /* Dark background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+        .profile-dropdown a {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            color: white; /* White text */
+        }
+
+        .profile-dropdown a:hover {
+            background-color: #4a5568; /* Darker hover effect */
+            color: #63b3ed; /* Light blue hover text */
+        }
+
+        .profile-dropdown.active {
+            display: block;
+        }
+
+        /* Ensure mobile menu has space when dropdown is open */
+        .mobile-dropdown-active {
+            margin-top: 70px;
+        }
+
+        /* Center dropdown under the username/profile icon */
+        .profile-dropdown, .mobile-menu {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* For mobile menu: ensure it appears directly below the profile */
+        .mobile-dropdown-active {
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-800 text-white">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 shadow-lg fixed w-full z-10">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <img src="https://cdn.discordapp.com/attachments/1160658559525191733/1336450699080503296/discord-avatar-128-IP4KZ.gif?ex=67a482f4&is=67a33174&hm=165418a89108d706a55485d1ef687a1593b60ae6201591e69169d34a6e865a33&" alt="Bot Logo" class="w-10 h-10 rounded-full">
+            <span class="text-xl font-semibold text-white">ninjabot</span>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="md:hidden text-gray-300 hover:text-gray-400 focus:outline-none" id="mobile-menu-btn">
+            <i data-lucide="menu"></i>
+        </button>
+
+        <!-- Navigation Links (Desktop) -->
+        <ul class="hidden md:flex space-x-6 text-lg" id="navbar-links">
+            <li><a href="#" class="text-white hover:text-blue-300 transition duration-300">Docs</a></li>
+            <li><a href="#" class="text-white hover:text-blue-300 transition duration-300">Invite Bot</a></li>
+            <li><a href="#" class="text-white hover:text-blue-300 transition duration-300">Support</a></li>
+            <% if(user){ %>
+                <!-- Logged In User - Profile Dropdown -->
+                <li class="relative flex items-center space-x-2 cursor-pointer" id="user-dropdown-btn">
+                    <img src="<%= user.profileImage || '/images/default-profile.png' %>" alt="User Profile" class="w-8 h-8 rounded-full">
+                    <span class="text-lg text-blue-300"><%= user.username %></span>
+
+                    <!-- Dropdown Menu -->
+                    <div class="profile-dropdown" id="profile-dropdown">
+                        <a href="/dashboard" class="block text-white hover:bg-gray-600 px-4 py-2">Dashboard</a>
+                        <a href="/logout" class="block text-white hover:bg-gray-600 px-4 py-2">Logout</a>
+                    </div>
+                </li>
+            <% } else { %>
+                <!-- Login Button -->
+                <li class="flex items-center space-x-2 cursor-pointer">
+                    <a href="/login" class="text-blue-300 hover:text-blue-500 transition duration-300">Login</a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+
+    <!-- Mobile Menu (Hidden initially) -->
+    <ul class="md:hidden bg-gray-800 px-4 py-2 space-y-2 hidden" id="mobile-menu">
+        <% if(user){ %>
+            <!-- Mobile User Dropdown for Logged In User -->
+            <li class="relative flex items-center space-x-2 cursor-pointer" id="mobile-user-dropdown-btn">
+                <img src="<%= user.profileImage || '/images/default-profile.png' %>" alt="User Profile" class="w-8 h-8 rounded-full">
+                <span class="text-lg text-blue-300" id="mobile-username"><%= user.username %></span>
+
+                <!-- Mobile Dropdown -->
+                <div class="mobile-menu" id="mobile-profile-dropdown">
+                    <a href="/dashboard" class="block text-white hover:bg-gray-600 px-4 py-2">Dashboard</a>
+                    <a href="/logout" class="block text-white hover:bg-gray-600 px-4 py-2">Logout</a>
+                </div>
+            </li>
+        <% } else { %>
+            <!-- Mobile Login Button -->
+            <li><a href="/login" class="text-blue-300 hover:text-blue-500 transition duration-300 p-4">Login</a></li>
+        <% } %>
+        <li><a href="#" class="text-white hover:text-blue-300 transition duration-300 p-4">Docs</a></li>
+        <li><a href="#" class="text-white hover:text-blue-300 transition duration-300 p-4">Invite Bot</a></li>
+        <li><a href="#" class="text-white hover:text-blue-300 transition duration-300 p-4">Support</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    // Toggle mobile menu (When logged out)
+    document.getElementById('mobile-menu-btn').addEventListener('click', function () {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Toggle profile dropdown (Desktop)
+    if(document.getElementById('user-dropdown-btn')) {
+        document.getElementById('user-dropdown-btn').addEventListener('click', function () {
+            const profileDropdown = document.getElementById('profile-dropdown');
+            profileDropdown.classList.toggle('active');
+        });
+    }
+
+    // Toggle mobile profile dropdown (Mobile)
+    if(document.getElementById('mobile-user-dropdown-btn')) {
+        document.getElementById('mobile-user-dropdown-btn').addEventListener('click', function () {
+            const mobileProfileDropdown = document.getElementById('mobile-profile-dropdown');
+            mobileProfileDropdown.classList.toggle('active');
+            // Add class to make other tabs below the profile dropdown
+            document.getElementById('mobile-menu').classList.toggle('mobile-dropdown-active');
+        });
+    }
+
+    // Close dropdown if clicked outside (Desktop)
+    window.addEventListener('click', function (e) {
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const userDropdownBtn = document.getElementById('user-dropdown-btn');
+        const mobileProfileDropdown = document.getElementById('mobile-profile-dropdown');
+        const mobileUserDropdownBtn = document.getElementById('mobile-user-dropdown-btn');
+
+        if (!userDropdownBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+            profileDropdown.classList.remove('active');
+        }
+
+        if (!mobileUserDropdownBtn.contains(e.target) && !mobileProfileDropdown.contains(e.target)) {
+            mobileProfileDropdown.classList.remove('active');
+            document.getElementById('mobile-menu').classList.remove('mobile-dropdown-active');
+        }
+    });
+  </script>
+</body>
+</html>

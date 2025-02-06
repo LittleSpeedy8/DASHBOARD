@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bot Name - Discord Bot</title>
+    <link rel="shortcut icon" href="https://i.ibb.co/L59DTpm/Pink-and-Black-Modern-Initials-Logo-Design-1-removebg-preview.png" type="image/x-icon">
+    <link href="../css/output.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures body takes up at least full height of viewport */
+            margin: 0;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Mobile Menu Styling */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            border-radius: 8px;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            color: gray;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #f3f4f6;
+            color: #1d4ed8;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        /* Footer stays at bottom */
+        footer {
+            margin-top: auto; /* Pushes footer to the bottom */
+            background-color: #2d3748; /* Adjust footer background color */
+        }
+    </style>
+</head>
+<body class="bg-gray-800">
+     <!-- Navbar -->
+     <%- include("../components/navbar.ejs") -%>
+          
+  <!-- 404 Error Section (Centered) -->
+<header class="flex items-center justify-center min-h-screen text-center px-4">
+    <div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white" >Oops! 404 - Page Not Found</h1>
+        <p class="text-xl mb-6 text-white">Sorry, the page you're looking for doesn't exist or has been moved.</p>
+        <a href="/" class="bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:bg-blue-600 hover:scale-105 active:bg-blue-700 active:scale-95">
+            Go Back Home
+        </a>
+    </div>
+</header>
+
+    <!-- Footer -->
+    <%- include("../components/footer.ejs") -%>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <script src="../js/script.js"></script>
+  
+</body>
+</html>

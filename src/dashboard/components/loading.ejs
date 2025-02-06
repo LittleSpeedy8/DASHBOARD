@@ -1,0 +1,72 @@
+<!-- loading.ejs -->
+<div id="loadingScreen" class="fixed inset-0 flex justify-center items-center bg-[#1f2937] z-50 pointer-events-all">
+    <div class="loader-circle"></div>
+  </div>
+  
+  <style>
+    /* Full screen loading screen with a background color of #1f2937 */
+    #loadingScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1f2937; /* Solid dark background */
+      z-index: 50; /* Ensure it's on top of everything */
+      pointer-events: all; /* Prevent interaction with underlying elements */
+    }
+  
+    /* Smaller Glowing Loading Circle */
+    .loader-circle {
+      width: 50px;
+      height: 50px;
+      border: 6px solid #fff;
+      border-top: 6px solid transparent;
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite, pulse 1.5s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.5);
+    }
+  
+    /* Rotate the circle */
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  
+    /* Pulse Animation (Circle grows and shrinks) */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  
+    /* Fade-out transition for loading screen */
+    #loadingScreen.fade-out {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none; /* Disable interaction after fade-out */
+    }
+  </style>
+  
+  <script>
+    window.onload = () => {
+      setTimeout(() => {
+        // Add fade-out class to hide loading screen smoothly
+        document.getElementById('loadingScreen').classList.add('fade-out');
+      }, 3000); // Delay to simulate page loading
+    };
+  </script>
+  

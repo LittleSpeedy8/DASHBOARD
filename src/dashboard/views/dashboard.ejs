@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bot Name - Discord Bot</title>
+    <link rel="shortcut icon" href="https://i.ibb.co/L59DTpm/Pink-and-Black-Modern-Initials-Logo-Design-1-removebg-preview.png" type="image/x-icon">
+    <link href="../css/output.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #1a202c; /* Dark background */
+            color: white; /* White text */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            flex-grow: 1;
+        }
+
+        .glass-effect {
+            background: rgba(45, 55, 72, 0.8); /* Dark glass effect */
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Mobile Menu Styling */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #2d3748; /* Dark mobile menu */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            border-radius: 8px;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            color: white; /* White text */
+        }
+
+        .mobile-menu a:hover {
+            background-color: #4a5568; /* Darker hover effect */
+            color: #63b3ed; /* Light blue hover text */
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        /* Ensure footer stays at the bottom */
+        footer {
+            margin-top: auto;
+            width: 100%;
+            background-color: #2d3748; /* Footer background */
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Darken card text */
+        .text-gray-800 {
+            color: white; /* Ensure card text is white */
+        }
+
+        .text-gray-600 {
+            color: #cbd5e0; /* Lighter gray for subtitles */
+        }
+
+        .bg-cover {
+            background-color: #1a202c; /* Match background if image is missing */
+        }
+
+        .hover\\:scale-105:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+     <!-- Navbar -->
+     <%- include("../components/navbar.ejs") -%>
+     
+     <div class="container mx-auto px-4 pt-24 flex-grow">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-white mb-4 animate-fade-in">Welcome to Your Dashboard</h1>
+            <p class="text-xl text-gray-600 animate-fade-in">Manage your Discord servers and bot settings</p>
+        </header>
+
+        <main class="mb-12"> <!-- Add margin-bottom -->
+            <div id="server-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <% guilds.forEach(guild => { %>
+                    <div class="glass-effect rounded-lg overflow-hidden shadow-lg animate-fade-in">
+                        <!-- Guild Banner -->
+                        <div class="h-32 bg-cover bg-center" 
+                            style="background-image: url('<%- guild.banner ? 'https://cdn.discordapp.com/banners/' + guild.id + '/' + guild.banner + '.png' : 'https://t4.ftcdn.net/jpg/04/04/73/39/360_F_404733910_2mIXr6RbC5G3WZJFjopVsBaR3EOM6Bqy.jpg' %>')">
+                        </div>
+                        
+                        <!-- Card Content -->
+                        <div class="p-4">
+                            <!-- Guild Icon -->
+                            <div class="flex justify-center -mt-16">
+                                <img class="w-24 h-24 rounded-full border-4 border-white shadow-lg animate-float" 
+                                    src="<%- guild.icon ? 'https://cdn.discordapp.com/icons/' + guild.id + '/' + guild.icon + '.png' : 'https://play-lh.googleusercontent.com/0oO5sAneb9lJP6l8c6DH4aj6f85qNpplQVHmPmbbBxAukDnlO7DarDW0b-kEIHa8SQ' %>" 
+                                    alt="Guild Icon">
+                            </div>
+                
+                            <!-- Guild Name -->
+                            <h2 class="mt-2 text-center text-xl font-semibold text-white"><%= guild.name %></h2>
+                
+                            <!-- Invite Bot Button -->
+                            <div class="mt-4 flex justify-center">
+                                <% 
+                                    const hasBot = bot.guilds.cache.get(guild.id); 
+                                %>
+                                <% if(hasBot) { %>
+                                    <!-- If bot is in the server, show the "Configure" button -->
+                                    <a href="/dashboard/<%= guild.id %>" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 hover:shadow-lg hover:scale-105 transform cursor-pointer">
+                                        Configure
+                                    </a>
+                                <% } else { %>
+                                    <!-- If bot is NOT in the server, show the "Invite Bot" button -->
+                                    <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                        Invite Bot
+                                    </button>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </main>
+        
+    </div>
+
+    <!-- Footer -->
+    <%- include("../components/footer.ejs") -%>
+  
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

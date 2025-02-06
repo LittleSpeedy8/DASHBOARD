@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ninjabot</title>
+    <link rel="shortcut icon" href="https://i.ibb.co/L59DTpm/Pink-and-Black-Modern-Initials-Logo-Design-1-removebg-preview.png" type="image/x-icon">
+    <link href="../css/output.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1E2A34; /* Updated to a blueish-gray background */
+            color: #E2E8F0; /* Light gray text for contrast */
+        }
+
+        .glass-effect {
+            background: rgba(0, 0, 0, 0.4); /* Slight blueish glass effect */
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .fade {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+        /* Mobile Menu Styling */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #1E2A34; /* Blueish-gray background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            width: 220px;
+            border-radius: 10px;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px;
+            text-align: center;
+            color: #E2E8F0;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #4A5568; /* Slight grayish hover */
+            color: #63B3ED; /* Soft blue hover */
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        /* "Add to Discord" Button */
+        .add-to-discord-btn {
+            background-color: #3182CE; /* Light blue color */
+            color: white;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-discord-btn:hover {
+            background-color: #2B6CB0; /* Darker blue on hover */
+        }
+
+        /* Features Section */
+        .glass-effect p {
+            color: #A0AEC0; /* Soft grayish text */
+        }
+    </style>
+</head>
+<body>
+    <%- include("../components/loading.ejs") -%>
+    <!-- Navbar -->
+    <%- include("../components/navbar.ejs") -%>
+  
+
+    <!-- Hero Section -->
+    <header class="pt-24 pb-16 bg-blue-800 bg-opacity-70 text-white">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Elevate Your Discord Server</h1>
+                <p class="text-xl mb-6">Powerful moderation, engaging giveaways, and seamless ticket management - all in one bot!</p>
+                <a href="#" class="add-to-discord-btn">Add to Discord</a>
+            </div>
+            <div class="md:w-1/2">
+                <img src="https://cdn.discordapp.com/attachments/1160658559525191733/1336450223047835782/Screenshot_2025-01-31_135016-removebg-preview.png?ex=67a48283&is=67a33103&hm=746498eca76dec581628f3559bd8c3be305e05cf71dee786b5d1fec248a583b9&" alt="Bot Banner" class="rounded-lg  animate-float">
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-blue-800 bg-opacity-70">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">Powerful Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-effect p-6 text-center">
+                    <div class="text-4xl text-blue-500 mb-4">
+                        <i data-lucide="tickets"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Ticket System</h3>
+                    <p class="text-gray-400">Streamline support with our integrated ticket management system.</p>
+                </div>
+                <div class="glass-effect p-6 text-center">
+                    <div class="text-4xl text-green-500 mb-4">
+                        <i data-lucide="gift"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Giveaway System</h3>
+                    <p class="text-gray-400">Host exciting giveaways to boost engagement in your server.</p>
+                </div>
+                <div class="glass-effect p-6 text-center">
+                    <div class="text-4xl text-red-500 mb-4">
+                        <i data-lucide="logs"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Moderation Logs</h3>
+                    <p class="text-gray-400">Keep track of all moderation actions with detailed logs.</p>
+                </div>
+                <div class="glass-effect p-6 text-center">
+                    <div class="text-4xl text-purple-500 mb-4">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Auto Moderation</h3>
+                    <p class="text-gray-400">Set up rules to automatically moderate your server.</p>
+                </div>
+                <div class="glass-effect p-6 text-center">
+                    <div class="text-4xl text-yellow-500 mb-4">
+                        <i data-lucide="user-round-search"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Role Management</h3>
+                    <p class="text-gray-400">Easily manage and assign roles to your server members.</p>
+                </div>
+                <div class="glass-effect p-6 text-center">
+                    <div class="text-4xl text-indigo-500 mb-4">
+                        <i data-lucide="chart-bar"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Server Stats</h3>
+                    <p class="text-gray-400">Get insights into your server's activity and growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bot Statistics Section -->
+    <section class="py-16 bg-blue-800 bg-opacity-70">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">Bot Statistics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-effect p-6 text-center">
+                    <div class="text-4xl font-bold text-blue-600 mb-2"><%= bot.guilds.cache.size %></div>
+                    <p class="text-xl text-gray-400">Servers</p>
+                </div>
+                <div class="glass-effect p-6 text-center">
+                    <div class="text-4xl font-bold text-green-600 mb-2"> <%= totalMembers %> </div>
+                    <p class="text-xl text-gray-400">Users</p>
+                </div>
+                <div class="glass-effect p-6 text-center">
+                    <div class="text-4xl font-bold text-purple-600 mb-2" id="bot-uptime"> <span id="days">0d</span> <span id="hours">0h</span> <span id="minutes">0m</span> <span id="seconds">0s</span> </div>
+                    <p class="text-xl text-gray-400">Uptime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-blue-800 bg-opacity-70">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">What Our Users Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-effect p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pravatar.cc/60?img=1" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-white">John Doe</h4>
+                            <p class="text-gray-400">Server Owner</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"This bot has completely transformed how we manage our server. The ticket system is a game-changer!"</p>
+                </div>
+                <div class="glass-effect p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pravatar.cc/60?img=2" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-white">Jane Smith</h4>
+                            <p class="text-gray-400">Moderator</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"The moderation tools are incredibly powerful. It's made our job so much easier and more efficient."</p>
+                </div>
+                <div class="glass-effect p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pravatar.cc/60?img=3" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-white">Mike Johnson</h4>
+                            <p class="text-gray-400">Community Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"The giveaway system has boosted engagement in our server. Our members love it!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-blue-800 bg-opacity-70 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Elevate Your Discord Server?</h2>
+            <p class="text-xl mb-8">Join thousands of servers already using Your Bot Name to enhance their communities.</p>
+            <a href="#" class="add-to-discord-btn">Add to Discord</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <%- include("../components/footer.ejs") -%>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+  
+
+  <script>
+    // Function to format uptime in milliseconds to days, hours, minutes, and seconds
+    function formatUptime(ms) {
+      const seconds = Math.floor(ms / 1000) % 60;
+      const minutes = Math.floor(ms / (1000 * 60)) % 60;
+      const hours = Math.floor(ms / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+  
+      return { days, hours, minutes, seconds };
+    }
+  
+    // Function to update the uptime in the DOM
+    function updateUptime() {
+      fetch('/bot-uptime')
+        .then(response => response.json())
+        .then(data => {
+          const uptimeInMs = data.uptime;
+          const { days, hours, minutes, seconds } = formatUptime(uptimeInMs);
+  
+          // Update the DOM directly with the new values
+          document.getElementById('days').innerText = `${days}d`;
+          document.getElementById('hours').innerText = `${hours}h`;
+          document.getElementById('minutes').innerText = `${minutes}m`;
+          document.getElementById('seconds').innerText = `${seconds}s`;
+        })
+        .catch(error => console.error('Error fetching uptime:', error));
+    }
+  
+    // Start updating uptime every second (1000ms)
+    setInterval(updateUptime, 1000);  // Updates every second
+  
+    // Run the function initially to load the uptime when the page first loads
+    updateUptime();
+  </script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>
